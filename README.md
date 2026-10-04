@@ -1,56 +1,79 @@
 # AI-Powered Multi-Layer Cybersecurity Threat Detection System
 
-A full-stack AI-powered cybersecurity prototype designed to detect DDoS/attack-like network traffic and analyze unusual traffic behavior.
+An AI-powered cybersecurity prototype designed to detect DDoS/attack-like network traffic, analyze unusual traffic behavior, and provide a foundation for a broader multi-layer cybersecurity threat detection and response framework.
 
-The current implementation contains two integrated security modules:
-
-1. **DDoS Detection**
-2. **Device/Traffic Fingerprinting**
-
-The first module classifies traffic as **Benign or Attack**, while the second compares traffic behavior with a benign baseline and generates an **anomaly score**.
+The project is being developed in stages. The **current implementation contains two integrated security modules**, while additional modules are planned as part of the major-project extension.
 
 ---
 
-## 📌 Project Overview
+## 📌 Table of Contents
 
-Traditional rule-based and signature-based security systems may struggle with changing traffic behavior. This project combines machine-learning-based DDoS detection with traffic-behavior analysis to provide complementary security information.
-
-The current prototype focuses on:
-
-- DDoS/attack-like traffic classification
-- Network-flow feature analysis
-- Traffic-behavior fingerprinting
-- Benign baseline comparison
-- Anomaly scoring
-- Interactive security dashboard
-- Flask REST APIs
-
-The current implementation establishes the foundation for a broader multi-layer cybersecurity framework.
+- [Project Overview](#-project-overview)
+- [Problem Statement](#-problem-statement)
+- [Project Objectives](#-project-objectives)
+- [Overall System Vision](#-overall-system-vision)
+- [Current Implementation](#-current-implementation)
+- [Module 1 — DDoS Detection](#module-1--ddos-detection)
+- [Module 2 — Device/Traffic Fingerprinting](#module-2--devicetraffic-fingerprinting)
+- [How the Two Modules Work Together](#-how-the-two-modules-work-together)
+- [Current System Architecture](#-current-system-architecture)
+- [Current Results](#-current-results)
+- [Technology Stack](#-technology-stack)
+- [Dataset](#-dataset)
+- [Project Structure](#-project-structure)
+- [API Documentation](#-api-documentation)
+- [Running the Project](#-running-the-project)
+- [Current Limitations](#-current-limitations)
+- [Future Development](#-future-development)
+- [Future System Architecture](#-future-system-architecture)
+- [Current vs Future System](#-current-vs-future-system)
+- [Team](#-team)
+- [Project Goal](#-project-goal)
 
 ---
 
-# 🚀 Current Implemented Modules
+# 🔐 Project Overview
 
-## Module 1 — DDoS Detection
+Modern networks continuously generate large amounts of traffic, making it difficult to identify malicious activity using only traditional security mechanisms.
 
-The DDoS Detection module analyzes network-flow features and classifies traffic into:
+A cybersecurity system should not only determine whether traffic appears malicious, but should also analyze **how unusual the traffic behavior is**, identify changes in behavior, predict potential threats, explain security decisions, and eventually take automated defensive actions.
 
-- **Benign**
-- **Attack**
+This project proposes a **multi-layer AI-powered cybersecurity threat detection system** that progressively combines different security analysis techniques.
 
-The module uses a trained **Random Forest Classifier** together with the current prototype traffic-rate detection logic.
+The current prototype focuses on two complementary layers:
 
-### Workflow
+### Layer 1 — DDoS Detection
+
+Uses a trained **Random Forest Classifier** together with prototype traffic-rate detection logic to classify network-flow traffic as:
+
+- `Benign`
+- `Attack`
+
+### Layer 2 — Device/Traffic Fingerprinting
+
+Analyzes selected network-flow characteristics against a benign traffic baseline and determines whether the observed traffic behavior is:
+
+- `Normal`
+- `Anomalous`
+
+The two modules therefore provide different but complementary security information.
 
 ```text
-Traffic Input
-      ↓
-Feature Preparation
-      ↓
-Random Forest
-      ↓
-Attack / Benign
-      ↓
-Flask API
-      ↓
-React Dashboard
+                    Network Traffic
+                          │
+                          ▼
+                ┌───────────────────┐
+                │ Feature Analysis  │
+                └─────────┬─────────┘
+                          │
+              ┌───────────┴───────────┐
+              │                       │
+              ▼                       ▼
+       DDoS Detection        Traffic Fingerprinting
+              │                       │
+              ▼                       ▼
+       Attack / Benign          Normal / Anomalous
+              │                       │
+              └───────────┬───────────┘
+                          ▼
+                 Security Dashboard
