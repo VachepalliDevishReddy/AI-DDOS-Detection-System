@@ -1,42 +1,56 @@
-# AI DDoS Detection System
+# AI-Powered Multi-Layer Cybersecurity Threat Detection System
 
-A full-stack AI-powered dashboard designed to detect and classify Distributed Denial of Service (DDoS) network traffic in real time using a Random Forest machine learning model.
+A full-stack AI-powered cybersecurity prototype designed to detect DDoS/attack-like network traffic and analyze unusual traffic behavior.
 
-## 🚀 Features
+The current implementation contains two integrated security modules:
 
-- **Real-Time Traffic Analysis:** Predicts whether incoming network parameters indicate `Normal` behavior or a `DDoS Attack`.
-- **Interactive Dashboard:** Built with React and Vite for fast performance and clean UI feedback.
-- **RESTful API Backend:** Powered by Flask to expose trained machine learning model inference endpoints.
-- **Pre-Trained ML Model:** Uses Random Forest (`ddos_rf_model.pkl`) trained on standard network traffic datasets.
+1. **DDoS Detection**
+2. **Device/Traffic Fingerprinting**
 
----
-
-## 🛠️ Tech Stack
-
-- **Frontend:** React, Vite, Lucide-React
-- **Backend:** Python, Flask, Flask-CORS
-- **Machine Learning:** Scikit-Learn, Pandas, Joblib
-- **Styling:** CSS3
+The first module classifies traffic as **Benign or Attack**, while the second compares traffic behavior with a benign baseline and generates an **anomaly score**.
 
 ---
 
-## 💻 Getting Started Locally
+## 📌 Project Overview
 
-### Prerequisites
-- Python 3.8+
-- Node.js & npm
+Traditional rule-based and signature-based security systems may struggle with changing traffic behavior. This project combines machine-learning-based DDoS detection with traffic-behavior analysis to provide complementary security information.
+
+The current prototype focuses on:
+
+- DDoS/attack-like traffic classification
+- Network-flow feature analysis
+- Traffic-behavior fingerprinting
+- Benign baseline comparison
+- Anomaly scoring
+- Interactive security dashboard
+- Flask REST APIs
+
+The current implementation establishes the foundation for a broader multi-layer cybersecurity framework.
 
 ---
 
-### 1. Backend Setup (Flask API)
+# 🚀 Current Implemented Modules
 
-Navigate to the `backend` directory and install the required dependencies:
+## Module 1 — DDoS Detection
 
-```bash
-cd backend
-python -m venv .venv
-# Activate virtual environment:
-# Windows: .venv\Scripts\activate
-# Mac/Linux: source .venv/bin/activate
-pip install -r ../requirements.txt
-python app.py
+The DDoS Detection module analyzes network-flow features and classifies traffic into:
+
+- **Benign**
+- **Attack**
+
+The module uses a trained **Random Forest Classifier** together with the current prototype traffic-rate detection logic.
+
+### Workflow
+
+```text
+Traffic Input
+      ↓
+Feature Preparation
+      ↓
+Random Forest
+      ↓
+Attack / Benign
+      ↓
+Flask API
+      ↓
+React Dashboard
